@@ -1,51 +1,44 @@
 package br.ucb.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
+import javax.faces.bean.SessionScoped;
 
 import br.ucb.dao.UsuarioDAO;
 import br.ucb.entity.Usuario;
 import br.ucb.service.ProfessorService;
 
-@ManagedBean (name = "professorBean")
+@SessionScoped
+@ManagedBean(name = "professorBean")
 public class ProfessorBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4385159599249889753L;
-	//@Inject
+	// @Inject
 	private ProfessorService profService;
 
 	private String nome;
 	private String matricula;
 
-	private List<Usuario> profs;
+	private List<Usuario> professores;
 
 	Usuario prof = new Usuario();
 	UsuarioDAO profDao = new UsuarioDAO();
 
 	@PostConstruct
-	public List<Usuario> getProfessores() {
-		List<Usuario> professores = profDao.getList();
-		return professores;
+	public void load() {
+		professores = new UsuarioDAO().getList();
 	}
 
-	/*@PostConstruct
-	public List<Usuario> listaProfsBean() {
-		profs = new ArrayList<>();
-		for (Usuario u : dao.getList()) {
-			profs.add(u);
-		}
-		return profs;
-	}*/
-
-
+	/*
+	 * @PostConstruct public List<Usuario> listaProfsBean() { profs = new
+	 * ArrayList<>(); for (Usuario u : dao.getList()) { profs.add(u); } return
+	 * profs; }
+	 */
 
 	// @PostConstruct
 	/*
@@ -55,6 +48,14 @@ public class ProfessorBean implements Serializable {
 	/*
 	 * public List<Usuario> getProfessores() { return dao.getList(); }
 	 */
+
+	public List<Usuario> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Usuario> professores) {
+		this.professores = professores;
+	}
 
 	public String getNome() {
 		return nome;
