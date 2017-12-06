@@ -1,0 +1,47 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+	<!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
+	<persistence-unit name="sufra" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>br.ucb.entity.Aluno</class>
+		<class>br.ucb.entity.AreaAtuacao</class>
+		<class>br.ucb.entity.Avaliacao</class>
+		<class>br.ucb.entity.CriterioAvaliacao</class>
+		<class>br.ucb.entity.Curso</class>
+		<class>br.ucb.entity.CursoMateria</class>
+		<class>br.ucb.entity.CursoMateriaPK</class>
+		<class>br.ucb.entity.Endereco</class>
+		<class>br.ucb.entity.Formacao</class>
+		<class>br.ucb.entity.Instituicao</class>
+		<class>br.ucb.entity.InstituicaoCurso</class>
+		<class>br.ucb.entity.InstituicaoCursoPK</class>
+		<class>br.ucb.entity.Login</class>
+		<class>br.ucb.entity.Materia</class>
+		<class>br.ucb.entity.PerfilLogin</class>
+		<class>br.ucb.entity.Pergunta</class>
+		<class>br.ucb.entity.Professor</class>
+		<class>br.ucb.entity.ProfessorMateria</class>
+		<class>br.ucb.entity.ProfessorMateriaPK</class>
+		<class>br.ucb.entity.Telefone</class>
+		<class>br.ucb.entity.TipoAvaliacao</class>
+		<class>br.ucb.entity.Turma</class>
+		<class>br.ucb.entity.Usuario</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://sql142.main-hosting.eu/u310228317_suffr" />
+			<property name="javax.persistence.jdbc.user" value="u310228317_sufra" />
+			<property name="javax.persistence.jdbc.password" value="159357" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hbm2ddl.auto" value="create" />
+			<property name="hibernate.id.new_generator_mappings" value="false" />
+		</properties>
+	</persistence-unit>
+</persistence>
