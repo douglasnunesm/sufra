@@ -14,8 +14,10 @@ public class EntityManagerUnity {
 	}
 
 	public static EntityManager getEntityManager() {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENT_UNIT);
-		entityManager = entityManagerFactory.createEntityManager();
+		if (entityManager == null) {
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENT_UNIT);
+			entityManager = entityManagerFactory.createEntityManager();
+		}
 		return entityManager;
 	}
 }
