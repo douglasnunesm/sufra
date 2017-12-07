@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<link rel="stylesheet" href="resource/css/styleLogin.css" />
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="info">
+			<h1>Suffragium</h1>
+		</div>
+	</div>
+	<div class="form">
+		<div class="thumbnail">
+			<img
+				src="resource/img/logo_sem.png" />
+		</div>
+		<h:form styleClass="login-form">
+			<p:messages id="messages" />
+			<p:outputLabel for="nomeUsuario" value="Email:" />
+			<p:inputText id="nomeUsuario" value="#{loginBean.login.login}" />
+
+			<p:outputLabel for="senha" value="Senha:" />
+			<p:password id="senha" value="#{loginBean.login.senha}" />
+
+			<p:commandButton value="Entrar"
+				action="#{loginBean.envia}" ajax="false">
+			</p:commandButton>
+
+
+		</h:form>
+	</div>
+</h:body>
+
+</html>
+

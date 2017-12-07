@@ -1,6 +1,7 @@
 package br.ucb.generics;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ public abstract class GenericCRUD<T, I extends Serializable> implements CRUD<T, 
 	protected EntityManager entityManager;
 
 	private Class<T> persistedClass;
+
 
 	protected GenericCRUD() {
 	}
