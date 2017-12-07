@@ -1,51 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:body>
-
-	<ui:composition template="template.xhtml">
-
-		<ui:define name="centro">
-			<p:dataTable id="tblProfessores" value="#{professorBean.professores}"
-				var="prof">
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="ID" />
-					</f:facet>
-					<h:outputText value="#{prof.idUsuario}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{prof.nomeUsuario}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="Matrícula" />
-					</f:facet>
-					<h:outputText value="#{prof.matricula}" />
-				</p:column>
-			</p:dataTable>
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 
+	<!-- <ui:composition template="template.xhtml"> -->
+	<!-- 
+//selection="#{projectAdminisrationMB.selectedUsers}" -->
+	<ui:define name="centro">
+		<p:dataTable id="tblProfessores" border="1" paginator="true" row="10"
+			value="#{professorBean.professores}" var="prof"
+			selectionMode="single" rowKey="#{prof.idUsuario}"
+			rowIndexVar="rowIndex">
+			<p:ajax oncomplete="self.location= 'avaliarprofessor.xhtml';"
+				event="rowSelect" listener="#{professorBean.onRowSelect}" />
+			<!-- <p:ajax event="rowSelect" update=":idForm:tblProfessores"
+					listener="#{professorBean.}" /> -->
+			<p:column style="text-align: center;">
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{prof.idUsuario}" />
+			</p:column>
+			<p:column style="text-align: center;">
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{prof.nomeUsuario}" />
+			</p:column>
+			<p:column style="text-align: center;">
+				<f:facet name="header">
+					<h:outputText value="Matrícula" />
+				</f:facet>
+				<h:outputText value="#{prof.matricula}" />
+			</p:column>
+			<p:column>
+				<p:commandButton icon="ui-icon-search">
+				</p:commandButton>
+				<p:commandButton action="/avaliarprofessor.xhtml"
+					icon="ui-icon-check">
+				</p:commandButton>
+
+			</p:column>
+
+
+		</p:dataTable>
 
 
 
 
 
-		</ui:define>
 
-	</ui:composition>
 
-</h:body>
+	</ui:define>
 
-</html>
+	<!-- 	</ui:composition> -->
+
+
+</ui:decorate>
 
 
 

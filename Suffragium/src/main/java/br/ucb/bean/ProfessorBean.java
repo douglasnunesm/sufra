@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.event.SelectEvent;
+
 import br.ucb.dao.UsuarioDAO;
 import br.ucb.entity.Usuario;
 import br.ucb.service.ProfessorService;
@@ -23,7 +25,7 @@ public class ProfessorBean implements Serializable {
 
 	private String nome;
 	private String matricula;
-
+	private Usuario usuarioSelecionado;
 	private List<Usuario> professores;
 
 	Usuario prof = new Usuario();
@@ -33,7 +35,10 @@ public class ProfessorBean implements Serializable {
 	public void load() {
 		professores = new UsuarioDAO().getList();
 	}
-
+	public void onRowSelect(SelectEvent slc) {
+		usuarioSelecionado = (Usuario) slc.getObject();
+		System.out.println(usuarioSelecionado.getNomeUsuario());
+	}
 	/*
 	 * @PostConstruct public List<Usuario> listaProfsBean() { profs = new
 	 * ArrayList<>(); for (Usuario u : dao.getList()) { profs.add(u); } return
