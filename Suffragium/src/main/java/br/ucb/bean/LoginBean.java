@@ -16,21 +16,22 @@ import br.ucb.dao.LoginDAO;
 import br.ucb.entity.Login;
 
 @RequestScoped
-@ManagedBean(name = "loginBean")
+@ManagedBean(name = "loginBean", eager = true)
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = -65113916663963880L;
 
 	private Login login = new Login();
 	private LoginDAO loginDAO = new LoginDAO();
-	//private LoginT loginT = new LoginT();
+	// private LoginT loginT = new LoginT();
 
 	public String envia() {
+
 		login = loginDAO.buscarLogin(login.getLogin(), login.getSenha());
 		if (login == null) {
 			login = new Login();
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usu·rio n„o encontrado",
-					"e-mail ou senha inv·lido.");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usu√°rio n√£o encontrado",
+					"e-mail ou senha inv√°lido.");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 

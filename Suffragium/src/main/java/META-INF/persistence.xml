@@ -33,7 +33,7 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://sufra.mysql.uhserver.com/sufra" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://sufra.mysql.uhserver.com/sufra?autoReconnect=true" />
 			<property name="javax.persistence.jdbc.user" value="douglasnm" />
 			<property name="javax.persistence.jdbc.password" value="04*sSJR5" />
 

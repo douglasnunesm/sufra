@@ -5,23 +5,20 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
 import br.ucb.dao.UsuarioDAO;
 import br.ucb.entity.Usuario;
-import br.ucb.service.ProfessorService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean(name = "professorBean")
 public class ProfessorBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4385159599249889753L;
-	// @Inject
-	private ProfessorService profService;
 
 	private String nome;
 	private String matricula;
@@ -35,6 +32,7 @@ public class ProfessorBean implements Serializable {
 	public void load() {
 		professores = new UsuarioDAO().getList();
 	}
+
 	public void onRowSelect(SelectEvent slc) {
 		usuarioSelecionado = (Usuario) slc.getObject();
 		System.out.println(usuarioSelecionado.getNomeUsuario());

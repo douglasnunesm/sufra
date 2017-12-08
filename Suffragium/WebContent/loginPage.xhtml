@@ -7,8 +7,33 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<style type="text/css">
+#main {
+	position: relative;
+}
 
+#main:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(resource/img/back_login.png);
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+	z-index: -1;
+}
+
+HTML {
+	background: url(resource/img/back_login.png);
+	width: 100%;
+	height: 100%;
+}
+</style>
+	<link rel="icon" href="resource/img/icons/favicon-16x16.png" />
 	<link rel="stylesheet" href="resource/css/styleLogin.css" />
+	<title>Suffragium</title>
 </h:head>
 <h:body>
 	<div class="container">
@@ -18,8 +43,7 @@
 	</div>
 	<div class="form">
 		<div class="thumbnail">
-			<img
-				src="resource/img/logo_sem.png" />
+			<img src="resource/img/logo_sem.png" />
 		</div>
 		<h:form styleClass="login-form">
 			<p:messages id="messages" />
@@ -29,8 +53,8 @@
 			<p:outputLabel for="senha" value="Senha:" />
 			<p:password id="senha" value="#{loginBean.login.senha}" />
 
-			<p:commandButton value="Entrar"
-				action="#{loginBean.envia}" ajax="false">
+			<p:commandButton value="Entrar" action="#{loginBean.envia}"
+				ajax="false">
 			</p:commandButton>
 
 
