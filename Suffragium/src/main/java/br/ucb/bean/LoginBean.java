@@ -1,7 +1,12 @@
 package br.ucb.bean;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -42,11 +47,7 @@ public class LoginBean implements Serializable {
 
 	}
 
-	private String cript(String senha) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public String logout() {
 		HttpSession session = Util.getSession();
 		session.invalidate();
@@ -69,7 +70,7 @@ public class LoginBean implements Serializable {
 		this.loginDAO = loginDAO;
 	}
 
-	/*public static byte[] hashPassword(final char[] password, final byte[] salt, final int iterations,
+	public static byte[] hashPassword(final char[] password, final byte[] salt, final int iterations,
 			final int keyLength) {
 
 		try {
@@ -82,6 +83,6 @@ public class LoginBean implements Serializable {
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			throw new RuntimeException(e);
 		}
-	}*/
+	}
 
 }
