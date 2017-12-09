@@ -79,8 +79,10 @@ label.star:before {
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<title>Suffragium</title>
+
 </h:head>
 <h:body>
+
 	<div align="center">
 		<p:layout style="min-height:800px;" align="left" fullPage="true">
 			<p:layoutUnit position="north" size="100"
@@ -100,6 +102,11 @@ label.star:before {
 				<div align="center" style="">
 					<ui:insert name="menu">
 						<h:form>
+							
+								<p>Welcome, #{loginBean.login.login}</p>
+								<p:commandButton action="#{loginBean.logout}" value="Logout"
+									ajax="false" />
+						
 							<p:growl autoUpdate="true" />
 							<p:panelMenu style="width:300px">
 								<p:submenu label="Avaliações">
