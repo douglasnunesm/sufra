@@ -4,6 +4,7 @@ import javax.persistence.NoResultException;
 
 import br.ucb.entity.Login;
 import br.ucb.generics.GenericCRUD;
+import br.ucb.security.Criptografia;
 
 public class LoginDAO extends GenericCRUD<Login, Integer> {
 	public LoginDAO() {
@@ -11,8 +12,9 @@ public class LoginDAO extends GenericCRUD<Login, Integer> {
 	}
 
 	public Login buscarLogin(String email, String senha) {
+		Criptografia.md5(senha);
 		try {
-			String query = "SELECT l from Login l where l.login = :email and l.senha = :senha ";
+			String query = "SELECT l from Login l where l.login = :email and l.senha = :senha";
 			Login login = (Login) entityManager.createQuery(query).setParameter("email", email)
 					.setParameter("senha", senha).getSingleResult();
 			return login;
