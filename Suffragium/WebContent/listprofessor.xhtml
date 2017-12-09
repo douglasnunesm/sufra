@@ -15,22 +15,23 @@
 		<!-- 
 //selection="#{projectAdminisrationMB.selectedUsers}" -->
 		<ui:define name="centro">
-			<p:dataTable id="tblProfessores" border="1" paginator="true" row="10"
-				value="#{professorBean.professores}" var="prof" cache="true"
+			<p:dataTable id="tblProfessores" border="1" paginator="true" rows="5"
+				value="#{professorBean.buscarProfessores}" var="prof" cache="true"
 				lazy="true" selectionMode="single" rowKey="#{prof.idUsuario}"
-				rowIndexVar="rowIndex" rowsPerPageTemplate="5,10,15"
+				rowIndexVar="rowIndex" listener="#{professorBean.tabelaFormat}"
+				rowsPerPageTemplate.setValue="1"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				<!--  rowsPerPageTemplate="9"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"> -->
 				<p:ajax oncomplete="self.location= 'avaliarprofessor.xhtml';"
 					event="rowSelect" listener="#{professorBean.onRowSelect}" />
-				<!-- <p:ajax event="rowSelect" update=":idForm:tblProfessores"
-					listener="#{professorBean.}" /> -->
 				<p:column style="text-align: center;">
 					<f:facet name="header">
 						<h:outputText value="ID" />
 					</f:facet>
 					<h:outputText value="#{prof.idUsuario}" />
 				</p:column>
-				<p:column style="text-align: center;">
+				<p:column sortBy="#{prof.nomeUsuario}" style="text-align: center;">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
