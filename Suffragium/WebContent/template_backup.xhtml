@@ -23,8 +23,8 @@ body {
 	
 }
 
-.ui-widget-content{
-border: none !important;
+.ui-widget-content {
+	border: none !important;
 }
 
 div.stars {
@@ -99,7 +99,7 @@ label.star:before {
 						style="position:absolute; align:center; font-size: 250%"
 						value="Suffragium" />
 				</div>
-				
+
 				<div>
 					<h:form>
 						<p>Welcome, #{loginBean.login.login}</p>
@@ -114,11 +114,13 @@ label.star:before {
 				<div align="center" style="">
 					<ui:insert name="menu">
 						<h:form>
-							
-								<p>Welcome, #{loginBean.login.login}</p>
-								<p:commandButton action="#{loginBean.logout}" value="Logout"
-									ajax="false" />
-						
+
+							<p>
+								<b>Welcome, #{loginBean.login.login}</b>
+							</p>
+							<p:commandButton action="#{loginBean.logout}" value="Logout"
+								ajax="false" />
+
 							<p:growl autoUpdate="true" />
 							<p:panelMenu style="width:300px">
 								<p:submenu label="Avaliações">

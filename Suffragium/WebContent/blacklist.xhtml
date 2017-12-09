@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="centro">
+			<h:form>
+
+				<p:growl id="messages" showDetail="true" />
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton onclick="PF('dlgNovaBackList').show()"
+							type="button" value="Novo" icon="ui-icon-document" />
+						<p:dialog modal="true" closable="true" id="dlgNovaBackList"
+							dynamic="true" showEffect="fade" widgetVar="dlgNovaBackList"
+							width="600" height="400" header="Adicionar Professor">
+							<!-- TABELA DE PROFESSORES -->
+							<p:dataTable id="tblProfessores" border="1" paginator="true"
+								rows="5" value="#{blackListBean.buscarProfessores}" var="prof"
+								cache="true" lazy="true" rowKey="#{prof.idUsuario}"
+								rowIndexVar="rowIndex"
+								listener="#{blackListBean.buscarProfessores}"
+								rowsPerPageTemplate.setValue="1"
+								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+								<p:ajax oncomplete="" event="rowSelect"
+									listener="#{blackListBean.onRowSelect}" />
+
+								<p:column style="text-align: center; " width="90%">
+									<f:facet name="header">
+										<h:outputText value="Nome" />
+									</f:facet>
+									<h:outputText value="#{prof.nomeUsuario}" />
+								</p:column>
+
+								<p:column style="text-align: center;">
+									<p:commandButton event="rowSelect"
+										action="#{blackListBean.onRowSelect()}" icon="fa fa-user-plus" />
+								</p:column>
+							</p:dataTable>
+						</p:dialog>
+						<p:commandButton type="button" value="Compartilhar"
+							icon="fa fa-facebook-official" />
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+					</f:facet>
+				</p:toolbar>
+
+
+
+			</h:form>
+
+
+<!--TABELA DA BLACKLIST QUE SERA CRIADA POR MEIO DE OUTRA  -->
+			<p:dataTable id="tblProfessores" border="1" paginator="true" rows="5"
+				value="#{blackListBean.buscarProfessores}" var="prof" cache="true"
+				lazy="true" rowKey="#{prof.idUsuario}" rowIndexVar="rowIndex"
+				listener="#{blackListBean.onRowSelect}"
+				rowsPerPageTemplate.setValue="1"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+				<p:ajax oncomplete="" event="rowSelect"
+					listener="#{blackListBean.onRowSelect}" />
+
+				<p:column style="text-align: center; " width="90%">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{prof.nomeUsuario}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>
+

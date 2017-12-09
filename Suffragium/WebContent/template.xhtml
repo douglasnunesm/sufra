@@ -34,11 +34,14 @@
 			</div>
 			<div class="ui-grid-col-2">
 				<h:form>
-					
-					<p>Welcome, #{loginBean.login.login}</p>
-					<p:commandButton
-						style="height: 30px; width: 100px; margin-bottom: 10px;"
-						action="#{loginBean.logout}" value="Logout" ajax="false" />
+					<font size="2"><p:outputLabel style='font-weight:bold;'>Bem-Vindo, #{loginBean.login.login}</p:outputLabel>
+					</font>
+					<br />
+					<p:growl id="growl" life="2000" />
+					<p:commandLink update="growl" action="#{loginBean.logout}"
+						ajax="false">
+						<h:outputText value="Logout" />
+					</p:commandLink>
 				</h:form>
 			</div>
 		</div>
@@ -54,26 +57,17 @@
 								<p:menuitem url="/listprofessor.xhtml"
 									value="Avaliar Professores" icon="fa fa-mortar-board" />
 							</p:submenu>
-							<p:submenu label="Non-Ajax Menuitem">
-								<p:menuitem value="Delete" ajax="false" icon="ui-icon-close" />
+							<p:submenu label="Relatórios">
+								<p:menuitem value="Resultado Avaliação Instituição" ajax="false"
+									icon="fa fa-bar-chart-o" />
+								<p:menuitem value="Resultado Avaliação Professores" ajax="false"
+									icon="fa fa-bar-chart-o" />
+
 							</p:submenu>
 							<p:separator />
-							<p:submenu label="Navigations">
-								<p:submenu label="Links" icon="ui-icon-extlink">
-									<p:submenu label="PrimeFaces" icon="ui-icon-heart">
-										<p:menuitem value="Home" url="http://www.primefaces.org"
-											icon="ui-icon-home" />
-										<p:menuitem value="Docs"
-											url="http://www.primefaces.org/documentation"
-											icon="ui-icon-document" />
-										<p:menuitem value="Download"
-											url="http://www.primefaces.org/downloads"
-											icon="ui-icon-arrowthick-1-s" />
-										<p:menuitem value="Support"
-											url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
-									</p:submenu>
-								</p:submenu>
-								<p:menuitem value="Mobile" icon="ui-icon-signal" />
+							<p:submenu label="BlackList">
+								<p:menuitem url="/blacklist.xhtml" value="Professores"
+									icon="fa fa-rebel" />
 							</p:submenu>
 						</p:panelMenu>
 					</h:form>
