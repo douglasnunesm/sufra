@@ -1,29 +1,21 @@
 package br.ucb.bean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.SelectEvent;
 
 import br.ucb.dao.UsuarioDAO;
 import br.ucb.entity.Usuario;
 
-@ViewScoped
-@ManagedBean(name = "professorBean")
-public class ProfessorBean implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4385159599249889753L;
-
+@ManagedBean
+public class BlackListBean {
+	List<Usuario> blackListProf = new ArrayList<>();
 	private String nome;
 	private String matricula;
 	private Usuario usuarioSelecionado;
@@ -31,12 +23,7 @@ public class ProfessorBean implements Serializable {
 	Usuario prof = new Usuario();
 	UsuarioDAO profDao = new UsuarioDAO();
 
-	@PostConstruct
-	public void load() {
-		professores = new UsuarioDAO().getList();
-	}
-
-	public ProfessorBean() {
+	public BlackListBean() {
 		professores = new UsuarioDAO().getList();
 	}
 
@@ -51,44 +38,41 @@ public class ProfessorBean implements Serializable {
 		return profs;
 	}
 
-	public void onRowSelect(SelectEvent slc) {
+	public List<Usuario> onRowSelect(SelectEvent slc) {
 		usuarioSelecionado = (Usuario) slc.getObject();
 		System.out.println(usuarioSelecionado.getNomeUsuario());
+		
+		List<Usuario> prof = new ArrayList<>();
+		for(Usuario element : getBuscarProfessores()){
+			if(usuarioSelecionado.equals(element)){
+				prof.add(element);
+				getBuscarProfessores().remove(element);
+			}
+		}
+		return prof;
 	}
 
-	public void tabelaFormat() {
-
-		DataTable tabela = new DataTable();
-		tabela.setRowsPerPageTemplate("1");
-
+/*	public List<Usuario> adicionarProfBlackList(){
+		List<Usuario> prof = new ArrayList<>();
+		for(Usuario element : getBuscarProfessores()){
+			if(o que eu clicar ){
+				prof.add(element);
+				getBuscarProfessores().remove(element);
+			}
+		}
+		return prof;
+	}
+*/
+	public void save() {
+		addMessage("Success", "Data saved");
 	}
 
-	public List<Usuario> getProfessores() {
-		return professores;
+	public void update() {
+		addMessage("Success", "Data updated");
 	}
 
-	public void setProfessores(List<Usuario> professores) {
-		this.professores = professores;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
-	public void concluirVotacao() {
-		addMessage("", "Votação concluída com sucesso!");
+	public void delete() {
+		addMessage("Success", "Data deleted");
 	}
 
 	public void addMessage(String summary, String detail) {
